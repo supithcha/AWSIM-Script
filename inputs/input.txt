@@ -1,0 +1,15 @@
+spawnPosition = "TrafficLane.239" at 15;
+
+routes = [
+    "TrafficLane.239",
+    "TrafficLane.448" with-speed-limit 20,
+    "TrafficLane.265" with-speed-limit -7
+];
+
+goal = "TrafficLane.265" at 60;
+
+vehicleType = "Taxi";
+
+npc1 = NPC(vehicleType, spawnPosition, routes, goal);
+
+run(npc1, NPC("smallCar"));
