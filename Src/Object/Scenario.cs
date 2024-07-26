@@ -7,7 +7,10 @@ namespace AWSIM_Script.Object
 		public Scenario()
 		{
         }
+		// list of NPCs
         private List<NPCScriptObject> npcs;
+
+		// some more config might be added later
     }
 }
 

@@ -8,8 +8,10 @@ namespace AWSIM_Script.Object
 		public NPCScriptObject()
 		{
 		}
-        private LanePosition initialPosition;
-        private LanePosition goal;
+        private IPosition initialPosition;
+        private IPosition goal;
+		private NPCSpawnDelay spawnDelayOption;
+		private NPCConfig config;
     }
 }
 

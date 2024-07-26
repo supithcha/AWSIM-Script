@@ -11,6 +11,8 @@ namespace AWSIM_Script.Execution
 		public ExecutionGeneration()
 		{
 		}
+        // this will be implemented when we intergrate this project into AWSIM.
+        // For now, please ignore it.
         public bool GenerateExecution(Scenario scenario)
         {
             return false;

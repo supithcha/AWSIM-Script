@@ -23,7 +23,7 @@ namespace AWSIM_Script.Parser
         public static void Main()
         {
             // This is an example showing how we can use Anltr to obtain the parsed Tree
-            String input = File.ReadAllText("inputs/input.txt");
+            string input = File.ReadAllText("inputs/input.txt");
             ICharStream stream = CharStreams.fromString(input);
             ITokenSource lexer = new AWSIMScriptGrammarLexer(stream);
             ITokenStream tokens = new CommonTokenStream(lexer);
