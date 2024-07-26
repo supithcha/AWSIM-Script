@@ -37,22 +37,25 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		STRING=10, SIGN=11, NUMBER=12, ID=13, WS=14, LINE_COMMENT=15;
+		T__9=10, T__10=11, T__11=12, T__12=13, STRING=14, SIGN=15, NUMBER=16, 
+		ID=17, WS=18, LINE_COMMENT=19;
 	public const int
 		RULE_scenario = 0, RULE_statement = 1, RULE_assignmentStm = 2, RULE_expression = 3, 
 		RULE_function = 4, RULE_argumentList = 5, RULE_arrayExp = 6, RULE_positionExp = 7, 
-		RULE_lanePositionExp = 8, RULE_routeExp = 9, RULE_variableExp = 10;
+		RULE_lanePositionExp = 8, RULE_routeExp = 9, RULE_variableExp = 10, RULE_spawnDelayOptionExp = 11;
 	public static readonly string[] ruleNames = {
 		"scenario", "statement", "assignmentStm", "expression", "function", "argumentList", 
-		"arrayExp", "positionExp", "lanePositionExp", "routeExp", "variableExp"
+		"arrayExp", "positionExp", "lanePositionExp", "routeExp", "variableExp", 
+		"spawnDelayOptionExp"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "';'", "'='", "'('", "')'", "','", "'['", "']'", "'at'", "'with-speed-limit'"
+		null, "';'", "'='", "'('", "')'", "','", "'['", "']'", "'at'", "'with-speed-limit'", 
+		"'delay'", "'delay-movement'", "'delay-until-ego-move'", "'delay-until-ego-engaged'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, null, null, null, null, null, null, null, null, null, "STRING", 
-		"SIGN", "NUMBER", "ID", "WS", "LINE_COMMENT"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, "STRING", "SIGN", "NUMBER", "ID", "WS", "LINE_COMMENT"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -125,21 +128,21 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 23;
+			State = 25;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 22;
+				State = 24;
 				statement();
 				}
 				}
-				State = 25;
+				State = 27;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			} while ( _la==ID );
-			State = 27;
+			State = 29;
 			Match(Eof);
 			}
 		}
@@ -189,22 +192,22 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		StatementContext _localctx = new StatementContext(Context, State);
 		EnterRule(_localctx, 2, RULE_statement);
 		try {
-			State = 33;
+			State = 35;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,1,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 29;
+				State = 31;
 				assignmentStm();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 30;
+				State = 32;
 				function();
-				State = 31;
+				State = 33;
 				Match(T__0);
 				}
 				break;
@@ -258,13 +261,13 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 35;
-			variableExp();
-			State = 36;
-			Match(T__1);
 			State = 37;
-			expression();
+			variableExp();
 			State = 38;
+			Match(T__1);
+			State = 39;
+			expression();
+			State = 40;
 			Match(T__0);
 			}
 		}
@@ -292,6 +295,9 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public VariableExpContext variableExp() {
 			return GetRuleContext<VariableExpContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public SpawnDelayOptionExpContext spawnDelayOptionExp() {
+			return GetRuleContext<SpawnDelayOptionExpContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public FunctionContext function() {
 			return GetRuleContext<FunctionContext>(0);
@@ -324,48 +330,55 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		ExpressionContext _localctx = new ExpressionContext(Context, State);
 		EnterRule(_localctx, 6, RULE_expression);
 		try {
-			State = 46;
+			State = 49;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,2,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 40;
+				State = 42;
 				Match(STRING);
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 41;
+				State = 43;
 				positionExp();
 				}
 				break;
 			case 3:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 42;
+				State = 44;
 				routeExp();
 				}
 				break;
 			case 4:
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 43;
+				State = 45;
 				arrayExp();
 				}
 				break;
 			case 5:
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 44;
+				State = 46;
 				variableExp();
 				}
 				break;
 			case 6:
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 45;
+				State = 47;
+				spawnDelayOptionExp();
+				}
+				break;
+			case 7:
+				EnterOuterAlt(_localctx, 7);
+				{
+				State = 48;
 				function();
 				}
 				break;
@@ -418,21 +431,21 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 48;
-			Match(ID);
-			State = 49;
-			Match(T__2);
 			State = 51;
+			Match(ID);
+			State = 52;
+			Match(T__2);
+			State = 54;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 9280L) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 162880L) != 0)) {
 				{
-				State = 50;
+				State = 53;
 				argumentList();
 				}
 			}
 
-			State = 53;
+			State = 56;
 			Match(T__3);
 			}
 		}
@@ -485,21 +498,21 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 55;
+			State = 58;
 			expression();
-			State = 60;
+			State = 63;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==T__4) {
 				{
 				{
-				State = 56;
+				State = 59;
 				Match(T__4);
-				State = 57;
+				State = 60;
 				expression();
 				}
 				}
-				State = 62;
+				State = 65;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -551,19 +564,19 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 63;
+			State = 66;
 			Match(T__5);
-			State = 65;
+			State = 68;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 9280L) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 162880L) != 0)) {
 				{
-				State = 64;
+				State = 67;
 				argumentList();
 				}
 			}
 
-			State = 67;
+			State = 70;
 			Match(T__6);
 			}
 		}
@@ -612,7 +625,7 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 69;
+			State = 72;
 			lanePositionExp();
 			}
 		}
@@ -661,16 +674,16 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 71;
-			Match(STRING);
 			State = 74;
+			Match(STRING);
+			State = 77;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__7) {
 				{
-				State = 72;
+				State = 75;
 				Match(T__7);
-				State = 73;
+				State = 76;
 				Match(NUMBER);
 				}
 			}
@@ -722,16 +735,16 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 76;
-			Match(STRING);
 			State = 79;
+			Match(STRING);
+			State = 82;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__8) {
 				{
-				State = 77;
+				State = 80;
 				Match(T__8);
-				State = 78;
+				State = 81;
 				Match(NUMBER);
 				}
 			}
@@ -781,7 +794,7 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 81;
+			State = 84;
 			Match(ID);
 			}
 		}
@@ -796,31 +809,137 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		return _localctx;
 	}
 
+	public partial class SpawnDelayOptionExpContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(AWSIMScriptGrammarParser.NUMBER, 0); }
+		public SpawnDelayOptionExpContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_spawnDelayOptionExp; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
+			if (typedListener != null) typedListener.EnterSpawnDelayOptionExp(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
+			if (typedListener != null) typedListener.ExitSpawnDelayOptionExp(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAWSIMScriptGrammarVisitor<TResult> typedVisitor = visitor as IAWSIMScriptGrammarVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSpawnDelayOptionExp(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public SpawnDelayOptionExpContext spawnDelayOptionExp() {
+		SpawnDelayOptionExpContext _localctx = new SpawnDelayOptionExpContext(Context, State);
+		EnterRule(_localctx, 22, RULE_spawnDelayOptionExp);
+		try {
+			State = 102;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case T__9:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 86;
+				Match(T__9);
+				State = 87;
+				Match(T__2);
+				State = 88;
+				Match(NUMBER);
+				State = 89;
+				Match(T__3);
+				}
+				break;
+			case T__10:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 90;
+				Match(T__10);
+				State = 91;
+				Match(T__2);
+				State = 92;
+				Match(NUMBER);
+				State = 93;
+				Match(T__3);
+				}
+				break;
+			case T__11:
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 94;
+				Match(T__11);
+				State = 95;
+				Match(T__2);
+				State = 96;
+				Match(NUMBER);
+				State = 97;
+				Match(T__3);
+				}
+				break;
+			case T__12:
+				EnterOuterAlt(_localctx, 4);
+				{
+				State = 98;
+				Match(T__12);
+				State = 99;
+				Match(T__2);
+				State = 100;
+				Match(NUMBER);
+				State = 101;
+				Match(T__3);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
 	private static int[] _serializedATN = {
-		4,1,15,84,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
-		7,7,2,8,7,8,2,9,7,9,2,10,7,10,1,0,4,0,24,8,0,11,0,12,0,25,1,0,1,0,1,1,
-		1,1,1,1,1,1,3,1,34,8,1,1,2,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,3,3,
-		47,8,3,1,4,1,4,1,4,3,4,52,8,4,1,4,1,4,1,5,1,5,1,5,5,5,59,8,5,10,5,12,5,
-		62,9,5,1,6,1,6,3,6,66,8,6,1,6,1,6,1,7,1,7,1,8,1,8,1,8,3,8,75,8,8,1,9,1,
-		9,1,9,3,9,80,8,9,1,10,1,10,1,10,0,0,11,0,2,4,6,8,10,12,14,16,18,20,0,0,
-		84,0,23,1,0,0,0,2,33,1,0,0,0,4,35,1,0,0,0,6,46,1,0,0,0,8,48,1,0,0,0,10,
-		55,1,0,0,0,12,63,1,0,0,0,14,69,1,0,0,0,16,71,1,0,0,0,18,76,1,0,0,0,20,
-		81,1,0,0,0,22,24,3,2,1,0,23,22,1,0,0,0,24,25,1,0,0,0,25,23,1,0,0,0,25,
-		26,1,0,0,0,26,27,1,0,0,0,27,28,5,0,0,1,28,1,1,0,0,0,29,34,3,4,2,0,30,31,
-		3,8,4,0,31,32,5,1,0,0,32,34,1,0,0,0,33,29,1,0,0,0,33,30,1,0,0,0,34,3,1,
-		0,0,0,35,36,3,20,10,0,36,37,5,2,0,0,37,38,3,6,3,0,38,39,5,1,0,0,39,5,1,
-		0,0,0,40,47,5,10,0,0,41,47,3,14,7,0,42,47,3,18,9,0,43,47,3,12,6,0,44,47,
-		3,20,10,0,45,47,3,8,4,0,46,40,1,0,0,0,46,41,1,0,0,0,46,42,1,0,0,0,46,43,
-		1,0,0,0,46,44,1,0,0,0,46,45,1,0,0,0,47,7,1,0,0,0,48,49,5,13,0,0,49,51,
-		5,3,0,0,50,52,3,10,5,0,51,50,1,0,0,0,51,52,1,0,0,0,52,53,1,0,0,0,53,54,
-		5,4,0,0,54,9,1,0,0,0,55,60,3,6,3,0,56,57,5,5,0,0,57,59,3,6,3,0,58,56,1,
-		0,0,0,59,62,1,0,0,0,60,58,1,0,0,0,60,61,1,0,0,0,61,11,1,0,0,0,62,60,1,
-		0,0,0,63,65,5,6,0,0,64,66,3,10,5,0,65,64,1,0,0,0,65,66,1,0,0,0,66,67,1,
-		0,0,0,67,68,5,7,0,0,68,13,1,0,0,0,69,70,3,16,8,0,70,15,1,0,0,0,71,74,5,
-		10,0,0,72,73,5,8,0,0,73,75,5,12,0,0,74,72,1,0,0,0,74,75,1,0,0,0,75,17,
-		1,0,0,0,76,79,5,10,0,0,77,78,5,9,0,0,78,80,5,12,0,0,79,77,1,0,0,0,79,80,
-		1,0,0,0,80,19,1,0,0,0,81,82,5,13,0,0,82,21,1,0,0,0,8,25,33,46,51,60,65,
-		74,79
+		4,1,19,105,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,1,0,4,0,26,8,0,11,0,12,0,27,1,
+		0,1,0,1,1,1,1,1,1,1,1,3,1,36,8,1,1,2,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,
+		3,1,3,1,3,3,3,50,8,3,1,4,1,4,1,4,3,4,55,8,4,1,4,1,4,1,5,1,5,1,5,5,5,62,
+		8,5,10,5,12,5,65,9,5,1,6,1,6,3,6,69,8,6,1,6,1,6,1,7,1,7,1,8,1,8,1,8,3,
+		8,78,8,8,1,9,1,9,1,9,3,9,83,8,9,1,10,1,10,1,11,1,11,1,11,1,11,1,11,1,11,
+		1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,3,11,103,8,11,1,11,0,
+		0,12,0,2,4,6,8,10,12,14,16,18,20,22,0,0,108,0,25,1,0,0,0,2,35,1,0,0,0,
+		4,37,1,0,0,0,6,49,1,0,0,0,8,51,1,0,0,0,10,58,1,0,0,0,12,66,1,0,0,0,14,
+		72,1,0,0,0,16,74,1,0,0,0,18,79,1,0,0,0,20,84,1,0,0,0,22,102,1,0,0,0,24,
+		26,3,2,1,0,25,24,1,0,0,0,26,27,1,0,0,0,27,25,1,0,0,0,27,28,1,0,0,0,28,
+		29,1,0,0,0,29,30,5,0,0,1,30,1,1,0,0,0,31,36,3,4,2,0,32,33,3,8,4,0,33,34,
+		5,1,0,0,34,36,1,0,0,0,35,31,1,0,0,0,35,32,1,0,0,0,36,3,1,0,0,0,37,38,3,
+		20,10,0,38,39,5,2,0,0,39,40,3,6,3,0,40,41,5,1,0,0,41,5,1,0,0,0,42,50,5,
+		14,0,0,43,50,3,14,7,0,44,50,3,18,9,0,45,50,3,12,6,0,46,50,3,20,10,0,47,
+		50,3,22,11,0,48,50,3,8,4,0,49,42,1,0,0,0,49,43,1,0,0,0,49,44,1,0,0,0,49,
+		45,1,0,0,0,49,46,1,0,0,0,49,47,1,0,0,0,49,48,1,0,0,0,50,7,1,0,0,0,51,52,
+		5,17,0,0,52,54,5,3,0,0,53,55,3,10,5,0,54,53,1,0,0,0,54,55,1,0,0,0,55,56,
+		1,0,0,0,56,57,5,4,0,0,57,9,1,0,0,0,58,63,3,6,3,0,59,60,5,5,0,0,60,62,3,
+		6,3,0,61,59,1,0,0,0,62,65,1,0,0,0,63,61,1,0,0,0,63,64,1,0,0,0,64,11,1,
+		0,0,0,65,63,1,0,0,0,66,68,5,6,0,0,67,69,3,10,5,0,68,67,1,0,0,0,68,69,1,
+		0,0,0,69,70,1,0,0,0,70,71,5,7,0,0,71,13,1,0,0,0,72,73,3,16,8,0,73,15,1,
+		0,0,0,74,77,5,14,0,0,75,76,5,8,0,0,76,78,5,16,0,0,77,75,1,0,0,0,77,78,
+		1,0,0,0,78,17,1,0,0,0,79,82,5,14,0,0,80,81,5,9,0,0,81,83,5,16,0,0,82,80,
+		1,0,0,0,82,83,1,0,0,0,83,19,1,0,0,0,84,85,5,17,0,0,85,21,1,0,0,0,86,87,
+		5,10,0,0,87,88,5,3,0,0,88,89,5,16,0,0,89,103,5,4,0,0,90,91,5,11,0,0,91,
+		92,5,3,0,0,92,93,5,16,0,0,93,103,5,4,0,0,94,95,5,12,0,0,95,96,5,3,0,0,
+		96,97,5,16,0,0,97,103,5,4,0,0,98,99,5,13,0,0,99,100,5,3,0,0,100,101,5,
+		16,0,0,101,103,5,4,0,0,102,86,1,0,0,0,102,90,1,0,0,0,102,94,1,0,0,0,102,
+		98,1,0,0,0,103,23,1,0,0,0,9,27,35,49,54,63,68,77,82,102
 	};
 
 	public static readonly ATN _ATN =

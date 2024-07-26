@@ -167,6 +167,18 @@ public partial class AWSIMScriptGrammarBaseListener : IAWSIMScriptGrammarListene
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitVariableExp([NotNull] AWSIMScriptGrammarParser.VariableExpContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.spawnDelayOptionExp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSpawnDelayOptionExp([NotNull] AWSIMScriptGrammarParser.SpawnDelayOptionExpContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="AWSIMScriptGrammarParser.spawnDelayOptionExp"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSpawnDelayOptionExp([NotNull] AWSIMScriptGrammarParser.SpawnDelayOptionExpContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

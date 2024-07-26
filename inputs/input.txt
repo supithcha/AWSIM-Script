@@ -14,9 +14,32 @@ goal = "TrafficLane.265" at 60;
 vehicleType = "Taxi";
 
 // the NPC function
-// npc1 = NPC("van", spawnPosition, goal, routes);
 npc1 = NPC(vehicleType, spawnPosition, goal, routes);
+
+// parameter routes is optional
+// npc1 = NPC("van", spawnPosition, goal);
+
+// if goal (and routes) is not passed,
+// it is treated as the NPC is a static obstacle
+// npc1 = NPC("van", "TrafficLane.239" at 15);
+
+// delay 5 seconds before spawning NPC
+// npc1 = NPC(vehicleType, spawnPosition, goal, routes, delay(5));
+// npc1 = NPC("van", "TrafficLane.239" at 15, delay(5));
+
+// spawn NPC and delay its movement by 5 seconds
+// npc1 = NPC(vehicleType, spawnPosition, goal, routes, delay-movement(5));
+
+// spawn NPC and make it move at 1 second after the Ego moves
+// npc1 = NPC(vehicleType, spawnPosition, goal, routes, delay-until-ego-move(1));
+
+// spawn NPC, delay its movement until the Ego engaged
+npc3 = NPC("van", "TrafficLane.239", goal, routes, delay-until-ego-engaged(0));
 
 // npc2 = NPC("hatchback", "TrafficLane.240", "TrafficLane.241");
 
-run([npc1, npc2]);
+// scenario. We may add some more parameters later
+run([npc1, npc2, npc3]);
+
+// with only one npc
+// run([NPC("hatchback", "TrafficLane.240", "TrafficLane.241")]);

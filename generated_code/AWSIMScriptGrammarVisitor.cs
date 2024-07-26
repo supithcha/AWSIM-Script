@@ -97,4 +97,10 @@ public interface IAWSIMScriptGrammarVisitor<Result> : IParseTreeVisitor<Result> 
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitVariableExp([NotNull] AWSIMScriptGrammarParser.VariableExpContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AWSIMScriptGrammarParser.spawnDelayOptionExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSpawnDelayOptionExp([NotNull] AWSIMScriptGrammarParser.SpawnDelayOptionExpContext context);
 }

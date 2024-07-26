@@ -16,6 +16,7 @@ expression
     | routeExp
     | arrayExp
     | variableExp
+    | spawnDelayOptionExp
     | function;
 
 function
@@ -41,6 +42,12 @@ routeExp
 // variable name, e.g., npc1
 variableExp: ID;
 
+spawnDelayOptionExp
+    : 'delay' '(' NUMBER ')'
+    | 'delay-movement' '(' NUMBER ')'
+    | 'delay-until-ego-move' '(' NUMBER ')'
+    | 'delay-until-ego-engaged' '(' NUMBER ')';
+
 // number and string data types
 STRING : '"' .*? '"';
 SIGN
@@ -55,3 +62,10 @@ WS  : (' '|'\t'|'\r'|'\n')+ -> skip;
 
 LINE_COMMENT
     : '//' ~[\r\n]* -> skip;
+
+
+// non-moving NPC
+// spawn an NPC with 5 seconds delay (i.e., spawn at time 5)
+// spawn an NPC and delay its movement by 5 seconds
+// spawn an NPC and make it move at 1 second after the Ego moves
+// spawn an NPC, delay its movement, and make it move when the Ego engage

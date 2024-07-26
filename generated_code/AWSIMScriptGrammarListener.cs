@@ -140,4 +140,14 @@ public interface IAWSIMScriptGrammarListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitVariableExp([NotNull] AWSIMScriptGrammarParser.VariableExpContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.spawnDelayOptionExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSpawnDelayOptionExp([NotNull] AWSIMScriptGrammarParser.SpawnDelayOptionExpContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="AWSIMScriptGrammarParser.spawnDelayOptionExp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSpawnDelayOptionExp([NotNull] AWSIMScriptGrammarParser.SpawnDelayOptionExpContext context);
 }
