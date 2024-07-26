@@ -91,15 +91,15 @@ public interface IAWSIMScriptGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitArgumentList([NotNull] AWSIMScriptGrammarParser.ArgumentListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.vehicleTypeExp"/>.
+	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.arrayExp"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterVehicleTypeExp([NotNull] AWSIMScriptGrammarParser.VehicleTypeExpContext context);
+	void EnterArrayExp([NotNull] AWSIMScriptGrammarParser.ArrayExpContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="AWSIMScriptGrammarParser.vehicleTypeExp"/>.
+	/// Exit a parse tree produced by <see cref="AWSIMScriptGrammarParser.arrayExp"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitVehicleTypeExp([NotNull] AWSIMScriptGrammarParser.VehicleTypeExpContext context);
+	void ExitArrayExp([NotNull] AWSIMScriptGrammarParser.ArrayExpContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.positionExp"/>.
 	/// </summary>
@@ -121,36 +121,6 @@ public interface IAWSIMScriptGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLanePositionExp([NotNull] AWSIMScriptGrammarParser.LanePositionExpContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.laneExp"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLaneExp([NotNull] AWSIMScriptGrammarParser.LaneExpContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="AWSIMScriptGrammarParser.laneExp"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLaneExp([NotNull] AWSIMScriptGrammarParser.LaneExpContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.offsetExp"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOffsetExp([NotNull] AWSIMScriptGrammarParser.OffsetExpContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="AWSIMScriptGrammarParser.offsetExp"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOffsetExp([NotNull] AWSIMScriptGrammarParser.OffsetExpContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.routesExp"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRoutesExp([NotNull] AWSIMScriptGrammarParser.RoutesExpContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="AWSIMScriptGrammarParser.routesExp"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRoutesExp([NotNull] AWSIMScriptGrammarParser.RoutesExpContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.routeExp"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -160,16 +130,6 @@ public interface IAWSIMScriptGrammarListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitRouteExp([NotNull] AWSIMScriptGrammarParser.RouteExpContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.speedExp"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSpeedExp([NotNull] AWSIMScriptGrammarParser.SpeedExpContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="AWSIMScriptGrammarParser.speedExp"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSpeedExp([NotNull] AWSIMScriptGrammarParser.SpeedExpContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="AWSIMScriptGrammarParser.variableExp"/>.
 	/// </summary>

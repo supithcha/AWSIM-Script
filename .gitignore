@@ -3,3 +3,5 @@ bin/
 obj/
 .history/
 .DS_Store
+.antlr
+.vscode

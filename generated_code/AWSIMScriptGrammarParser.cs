@@ -37,24 +37,22 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		STRING=10, SIGN=11, NUMBER=12, ID=13, WS=14;
+		STRING=10, SIGN=11, NUMBER=12, ID=13, WS=14, LINE_COMMENT=15;
 	public const int
 		RULE_scenario = 0, RULE_statement = 1, RULE_assignmentStm = 2, RULE_expression = 3, 
-		RULE_function = 4, RULE_argumentList = 5, RULE_vehicleTypeExp = 6, RULE_positionExp = 7, 
-		RULE_lanePositionExp = 8, RULE_laneExp = 9, RULE_offsetExp = 10, RULE_routesExp = 11, 
-		RULE_routeExp = 12, RULE_speedExp = 13, RULE_variableExp = 14;
+		RULE_function = 4, RULE_argumentList = 5, RULE_arrayExp = 6, RULE_positionExp = 7, 
+		RULE_lanePositionExp = 8, RULE_routeExp = 9, RULE_variableExp = 10;
 	public static readonly string[] ruleNames = {
 		"scenario", "statement", "assignmentStm", "expression", "function", "argumentList", 
-		"vehicleTypeExp", "positionExp", "lanePositionExp", "laneExp", "offsetExp", 
-		"routesExp", "routeExp", "speedExp", "variableExp"
+		"arrayExp", "positionExp", "lanePositionExp", "routeExp", "variableExp"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "';'", "'='", "'('", "')'", "','", "'at'", "'['", "']'", "'with-speed-limit'"
+		null, "';'", "'='", "'('", "')'", "','", "'['", "']'", "'at'", "'with-speed-limit'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, "STRING", 
-		"SIGN", "NUMBER", "ID", "WS"
+		"SIGN", "NUMBER", "ID", "WS", "LINE_COMMENT"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -127,21 +125,21 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 31;
+			State = 23;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 30;
+				State = 22;
 				statement();
 				}
 				}
-				State = 33;
+				State = 25;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			} while ( _la==ID );
-			State = 35;
+			State = 27;
 			Match(Eof);
 			}
 		}
@@ -191,22 +189,22 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		StatementContext _localctx = new StatementContext(Context, State);
 		EnterRule(_localctx, 2, RULE_statement);
 		try {
-			State = 41;
+			State = 33;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,1,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 37;
+				State = 29;
 				assignmentStm();
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 38;
+				State = 30;
 				function();
-				State = 39;
+				State = 31;
 				Match(T__0);
 				}
 				break;
@@ -260,13 +258,13 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 43;
+			State = 35;
 			variableExp();
-			State = 44;
+			State = 36;
 			Match(T__1);
-			State = 45;
+			State = 37;
 			expression();
-			State = 46;
+			State = 38;
 			Match(T__0);
 			}
 		}
@@ -282,14 +280,15 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	}
 
 	public partial class ExpressionContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public VehicleTypeExpContext vehicleTypeExp() {
-			return GetRuleContext<VehicleTypeExpContext>(0);
-		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(AWSIMScriptGrammarParser.STRING, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public PositionExpContext positionExp() {
 			return GetRuleContext<PositionExpContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public RoutesExpContext routesExp() {
-			return GetRuleContext<RoutesExpContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public RouteExpContext routeExp() {
+			return GetRuleContext<RouteExpContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ArrayExpContext arrayExp() {
+			return GetRuleContext<ArrayExpContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public VariableExpContext variableExp() {
 			return GetRuleContext<VariableExpContext>(0);
@@ -325,41 +324,48 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		ExpressionContext _localctx = new ExpressionContext(Context, State);
 		EnterRule(_localctx, 6, RULE_expression);
 		try {
-			State = 53;
+			State = 46;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,2,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 48;
-				vehicleTypeExp();
+				State = 40;
+				Match(STRING);
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 49;
+				State = 41;
 				positionExp();
 				}
 				break;
 			case 3:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 50;
-				routesExp();
+				State = 42;
+				routeExp();
 				}
 				break;
 			case 4:
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 51;
-				variableExp();
+				State = 43;
+				arrayExp();
 				}
 				break;
 			case 5:
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 52;
+				State = 44;
+				variableExp();
+				}
+				break;
+			case 6:
+				EnterOuterAlt(_localctx, 6);
+				{
+				State = 45;
 				function();
 				}
 				break;
@@ -412,21 +418,21 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 55;
+			State = 48;
 			Match(ID);
-			State = 56;
+			State = 49;
 			Match(T__2);
-			State = 58;
+			State = 51;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 9344L) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 9280L) != 0)) {
 				{
-				State = 57;
+				State = 50;
 				argumentList();
 				}
 			}
 
-			State = 60;
+			State = 53;
 			Match(T__3);
 			}
 		}
@@ -479,21 +485,21 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 62;
+			State = 55;
 			expression();
-			State = 67;
+			State = 60;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==T__4) {
 				{
 				{
-				State = 63;
+				State = 56;
 				Match(T__4);
-				State = 64;
+				State = 57;
 				expression();
 				}
 				}
-				State = 69;
+				State = 62;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -510,40 +516,55 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		return _localctx;
 	}
 
-	public partial class VehicleTypeExpContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(AWSIMScriptGrammarParser.STRING, 0); }
-		public VehicleTypeExpContext(ParserRuleContext parent, int invokingState)
+	public partial class ArrayExpContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ArgumentListContext argumentList() {
+			return GetRuleContext<ArgumentListContext>(0);
+		}
+		public ArrayExpContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_vehicleTypeExp; } }
+		public override int RuleIndex { get { return RULE_arrayExp; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.EnterVehicleTypeExp(this);
+			if (typedListener != null) typedListener.EnterArrayExp(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.ExitVehicleTypeExp(this);
+			if (typedListener != null) typedListener.ExitArrayExp(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IAWSIMScriptGrammarVisitor<TResult> typedVisitor = visitor as IAWSIMScriptGrammarVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVehicleTypeExp(this);
+			if (typedVisitor != null) return typedVisitor.VisitArrayExp(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public VehicleTypeExpContext vehicleTypeExp() {
-		VehicleTypeExpContext _localctx = new VehicleTypeExpContext(Context, State);
-		EnterRule(_localctx, 12, RULE_vehicleTypeExp);
+	public ArrayExpContext arrayExp() {
+		ArrayExpContext _localctx = new ArrayExpContext(Context, State);
+		EnterRule(_localctx, 12, RULE_arrayExp);
+		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 70;
-			Match(STRING);
+			State = 63;
+			Match(T__5);
+			State = 65;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 9280L) != 0)) {
+				{
+				State = 64;
+				argumentList();
+				}
+			}
+
+			State = 67;
+			Match(T__6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -591,7 +612,7 @@ public partial class AWSIMScriptGrammarParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 72;
+			State = 69;
 			lanePositionExp();
 			}
 		}
@@ -607,12 +628,8 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	}
 
 	public partial class LanePositionExpContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public LaneExpContext laneExp() {
-			return GetRuleContext<LaneExpContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public OffsetExpContext offsetExp() {
-			return GetRuleContext<OffsetExpContext>(0);
-		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(AWSIMScriptGrammarParser.STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(AWSIMScriptGrammarParser.NUMBER, 0); }
 		public LanePositionExpContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -640,210 +657,24 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	public LanePositionExpContext lanePositionExp() {
 		LanePositionExpContext _localctx = new LanePositionExpContext(Context, State);
 		EnterRule(_localctx, 16, RULE_lanePositionExp);
-		try {
-			State = 79;
-			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,5,Context) ) {
-			case 1:
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 74;
-				laneExp();
-				}
-				break;
-			case 2:
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 75;
-				laneExp();
-				State = 76;
-				Match(T__5);
-				State = 77;
-				offsetExp();
-				}
-				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class LaneExpContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(AWSIMScriptGrammarParser.STRING, 0); }
-		public LaneExpContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_laneExp; } }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.EnterLaneExp(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.ExitLaneExp(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IAWSIMScriptGrammarVisitor<TResult> typedVisitor = visitor as IAWSIMScriptGrammarVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitLaneExp(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public LaneExpContext laneExp() {
-		LaneExpContext _localctx = new LaneExpContext(Context, State);
-		EnterRule(_localctx, 18, RULE_laneExp);
-		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 81;
-			Match(STRING);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class OffsetExpContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(AWSIMScriptGrammarParser.NUMBER, 0); }
-		public OffsetExpContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_offsetExp; } }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.EnterOffsetExp(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.ExitOffsetExp(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IAWSIMScriptGrammarVisitor<TResult> typedVisitor = visitor as IAWSIMScriptGrammarVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOffsetExp(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public OffsetExpContext offsetExp() {
-		OffsetExpContext _localctx = new OffsetExpContext(Context, State);
-		EnterRule(_localctx, 20, RULE_offsetExp);
-		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 83;
-			Match(NUMBER);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class RoutesExpContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public RouteExpContext[] routeExp() {
-			return GetRuleContexts<RouteExpContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public RouteExpContext routeExp(int i) {
-			return GetRuleContext<RouteExpContext>(i);
-		}
-		public RoutesExpContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_routesExp; } }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.EnterRoutesExp(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.ExitRoutesExp(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IAWSIMScriptGrammarVisitor<TResult> typedVisitor = visitor as IAWSIMScriptGrammarVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitRoutesExp(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public RoutesExpContext routesExp() {
-		RoutesExpContext _localctx = new RoutesExpContext(Context, State);
-		EnterRule(_localctx, 22, RULE_routesExp);
 		int _la;
 		try {
-			State = 98;
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 71;
+			Match(STRING);
+			State = 74;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,7,Context) ) {
-			case 1:
-				EnterOuterAlt(_localctx, 1);
+			_la = TokenStream.LA(1);
+			if (_la==T__7) {
 				{
-				State = 85;
-				Match(T__6);
-				State = 86;
-				routeExp();
-				State = 91;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-				while (_la==T__4) {
-					{
-					{
-					State = 87;
-					Match(T__4);
-					State = 88;
-					routeExp();
-					}
-					}
-					State = 93;
-					ErrorHandler.Sync(this);
-					_la = TokenStream.LA(1);
-				}
-				State = 94;
+				State = 72;
 				Match(T__7);
+				State = 73;
+				Match(NUMBER);
 				}
-				break;
-			case 2:
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 96;
-				Match(T__6);
-				State = 97;
-				Match(T__7);
-				}
-				break;
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -858,12 +689,8 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	}
 
 	public partial class RouteExpContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public LaneExpContext laneExp() {
-			return GetRuleContext<LaneExpContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public SpeedExpContext speedExp() {
-			return GetRuleContext<SpeedExpContext>(0);
-		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(AWSIMScriptGrammarParser.STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(AWSIMScriptGrammarParser.NUMBER, 0); }
 		public RouteExpContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -890,72 +717,25 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	[RuleVersion(0)]
 	public RouteExpContext routeExp() {
 		RouteExpContext _localctx = new RouteExpContext(Context, State);
-		EnterRule(_localctx, 24, RULE_routeExp);
+		EnterRule(_localctx, 18, RULE_routeExp);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 100;
-			laneExp();
-			State = 103;
+			State = 76;
+			Match(STRING);
+			State = 79;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==T__8) {
 				{
-				State = 101;
+				State = 77;
 				Match(T__8);
-				State = 102;
-				speedExp();
+				State = 78;
+				Match(NUMBER);
 				}
 			}
 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class SpeedExpContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(AWSIMScriptGrammarParser.NUMBER, 0); }
-		public SpeedExpContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_speedExp; } }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.EnterSpeedExp(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IAWSIMScriptGrammarListener typedListener = listener as IAWSIMScriptGrammarListener;
-			if (typedListener != null) typedListener.ExitSpeedExp(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IAWSIMScriptGrammarVisitor<TResult> typedVisitor = visitor as IAWSIMScriptGrammarVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitSpeedExp(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public SpeedExpContext speedExp() {
-		SpeedExpContext _localctx = new SpeedExpContext(Context, State);
-		EnterRule(_localctx, 26, RULE_speedExp);
-		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 105;
-			Match(NUMBER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -997,11 +777,11 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	[RuleVersion(0)]
 	public VariableExpContext variableExp() {
 		VariableExpContext _localctx = new VariableExpContext(Context, State);
-		EnterRule(_localctx, 28, RULE_variableExp);
+		EnterRule(_localctx, 20, RULE_variableExp);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 107;
+			State = 81;
 			Match(ID);
 			}
 		}
@@ -1017,37 +797,30 @@ public partial class AWSIMScriptGrammarParser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,14,110,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
-		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,
-		1,0,4,0,32,8,0,11,0,12,0,33,1,0,1,0,1,1,1,1,1,1,1,1,3,1,42,8,1,1,2,1,2,
-		1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,3,3,54,8,3,1,4,1,4,1,4,3,4,59,8,4,1,4,
-		1,4,1,5,1,5,1,5,5,5,66,8,5,10,5,12,5,69,9,5,1,6,1,6,1,7,1,7,1,8,1,8,1,
-		8,1,8,1,8,3,8,80,8,8,1,9,1,9,1,10,1,10,1,11,1,11,1,11,1,11,5,11,90,8,11,
-		10,11,12,11,93,9,11,1,11,1,11,1,11,1,11,3,11,99,8,11,1,12,1,12,1,12,3,
-		12,104,8,12,1,13,1,13,1,14,1,14,1,14,0,0,15,0,2,4,6,8,10,12,14,16,18,20,
-		22,24,26,28,0,0,106,0,31,1,0,0,0,2,41,1,0,0,0,4,43,1,0,0,0,6,53,1,0,0,
-		0,8,55,1,0,0,0,10,62,1,0,0,0,12,70,1,0,0,0,14,72,1,0,0,0,16,79,1,0,0,0,
-		18,81,1,0,0,0,20,83,1,0,0,0,22,98,1,0,0,0,24,100,1,0,0,0,26,105,1,0,0,
-		0,28,107,1,0,0,0,30,32,3,2,1,0,31,30,1,0,0,0,32,33,1,0,0,0,33,31,1,0,0,
-		0,33,34,1,0,0,0,34,35,1,0,0,0,35,36,5,0,0,1,36,1,1,0,0,0,37,42,3,4,2,0,
-		38,39,3,8,4,0,39,40,5,1,0,0,40,42,1,0,0,0,41,37,1,0,0,0,41,38,1,0,0,0,
-		42,3,1,0,0,0,43,44,3,28,14,0,44,45,5,2,0,0,45,46,3,6,3,0,46,47,5,1,0,0,
-		47,5,1,0,0,0,48,54,3,12,6,0,49,54,3,14,7,0,50,54,3,22,11,0,51,54,3,28,
-		14,0,52,54,3,8,4,0,53,48,1,0,0,0,53,49,1,0,0,0,53,50,1,0,0,0,53,51,1,0,
-		0,0,53,52,1,0,0,0,54,7,1,0,0,0,55,56,5,13,0,0,56,58,5,3,0,0,57,59,3,10,
-		5,0,58,57,1,0,0,0,58,59,1,0,0,0,59,60,1,0,0,0,60,61,5,4,0,0,61,9,1,0,0,
-		0,62,67,3,6,3,0,63,64,5,5,0,0,64,66,3,6,3,0,65,63,1,0,0,0,66,69,1,0,0,
-		0,67,65,1,0,0,0,67,68,1,0,0,0,68,11,1,0,0,0,69,67,1,0,0,0,70,71,5,10,0,
-		0,71,13,1,0,0,0,72,73,3,16,8,0,73,15,1,0,0,0,74,80,3,18,9,0,75,76,3,18,
-		9,0,76,77,5,6,0,0,77,78,3,20,10,0,78,80,1,0,0,0,79,74,1,0,0,0,79,75,1,
-		0,0,0,80,17,1,0,0,0,81,82,5,10,0,0,82,19,1,0,0,0,83,84,5,12,0,0,84,21,
-		1,0,0,0,85,86,5,7,0,0,86,91,3,24,12,0,87,88,5,5,0,0,88,90,3,24,12,0,89,
-		87,1,0,0,0,90,93,1,0,0,0,91,89,1,0,0,0,91,92,1,0,0,0,92,94,1,0,0,0,93,
-		91,1,0,0,0,94,95,5,8,0,0,95,99,1,0,0,0,96,97,5,7,0,0,97,99,5,8,0,0,98,
-		85,1,0,0,0,98,96,1,0,0,0,99,23,1,0,0,0,100,103,3,18,9,0,101,102,5,9,0,
-		0,102,104,3,26,13,0,103,101,1,0,0,0,103,104,1,0,0,0,104,25,1,0,0,0,105,
-		106,5,12,0,0,106,27,1,0,0,0,107,108,5,13,0,0,108,29,1,0,0,0,9,33,41,53,
-		58,67,79,91,98,103
+		4,1,15,84,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		7,7,2,8,7,8,2,9,7,9,2,10,7,10,1,0,4,0,24,8,0,11,0,12,0,25,1,0,1,0,1,1,
+		1,1,1,1,1,1,3,1,34,8,1,1,2,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,3,3,
+		47,8,3,1,4,1,4,1,4,3,4,52,8,4,1,4,1,4,1,5,1,5,1,5,5,5,59,8,5,10,5,12,5,
+		62,9,5,1,6,1,6,3,6,66,8,6,1,6,1,6,1,7,1,7,1,8,1,8,1,8,3,8,75,8,8,1,9,1,
+		9,1,9,3,9,80,8,9,1,10,1,10,1,10,0,0,11,0,2,4,6,8,10,12,14,16,18,20,0,0,
+		84,0,23,1,0,0,0,2,33,1,0,0,0,4,35,1,0,0,0,6,46,1,0,0,0,8,48,1,0,0,0,10,
+		55,1,0,0,0,12,63,1,0,0,0,14,69,1,0,0,0,16,71,1,0,0,0,18,76,1,0,0,0,20,
+		81,1,0,0,0,22,24,3,2,1,0,23,22,1,0,0,0,24,25,1,0,0,0,25,23,1,0,0,0,25,
+		26,1,0,0,0,26,27,1,0,0,0,27,28,5,0,0,1,28,1,1,0,0,0,29,34,3,4,2,0,30,31,
+		3,8,4,0,31,32,5,1,0,0,32,34,1,0,0,0,33,29,1,0,0,0,33,30,1,0,0,0,34,3,1,
+		0,0,0,35,36,3,20,10,0,36,37,5,2,0,0,37,38,3,6,3,0,38,39,5,1,0,0,39,5,1,
+		0,0,0,40,47,5,10,0,0,41,47,3,14,7,0,42,47,3,18,9,0,43,47,3,12,6,0,44,47,
+		3,20,10,0,45,47,3,8,4,0,46,40,1,0,0,0,46,41,1,0,0,0,46,42,1,0,0,0,46,43,
+		1,0,0,0,46,44,1,0,0,0,46,45,1,0,0,0,47,7,1,0,0,0,48,49,5,13,0,0,49,51,
+		5,3,0,0,50,52,3,10,5,0,51,50,1,0,0,0,51,52,1,0,0,0,52,53,1,0,0,0,53,54,
+		5,4,0,0,54,9,1,0,0,0,55,60,3,6,3,0,56,57,5,5,0,0,57,59,3,6,3,0,58,56,1,
+		0,0,0,59,62,1,0,0,0,60,58,1,0,0,0,60,61,1,0,0,0,61,11,1,0,0,0,62,60,1,
+		0,0,0,63,65,5,6,0,0,64,66,3,10,5,0,65,64,1,0,0,0,65,66,1,0,0,0,66,67,1,
+		0,0,0,67,68,5,7,0,0,68,13,1,0,0,0,69,70,3,16,8,0,70,15,1,0,0,0,71,74,5,
+		10,0,0,72,73,5,8,0,0,73,75,5,12,0,0,74,72,1,0,0,0,74,75,1,0,0,0,75,17,
+		1,0,0,0,76,79,5,10,0,0,77,78,5,9,0,0,78,80,5,12,0,0,79,77,1,0,0,0,79,80,
+		1,0,0,0,80,19,1,0,0,0,81,82,5,13,0,0,82,21,1,0,0,0,8,25,33,46,51,60,65,
+		74,79
 	};
 
 	public static readonly ATN _ATN =

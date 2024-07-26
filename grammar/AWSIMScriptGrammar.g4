@@ -1,9 +1,5 @@
 grammar AWSIMScriptGrammar;
 
-// We assume that the
-// e.g., run(npc1, npc2)
-// to spawn NPC: vehicle type, initial position, goal position, and (OPTIONAL) routes
-
 scenario
     : (statement)+ EOF;
 
@@ -15,43 +11,32 @@ assignmentStm
     : variableExp '=' expression ';';
 
 expression
-    : vehicleTypeExp
+    : STRING
     | positionExp
-    | routesExp
-    | variableExp 
+    | routeExp
+    | arrayExp
+    | variableExp
     | function;
 
 function
-    : ID '(' argumentList? ')'
-    ;
+    : ID '(' argumentList? ')' ;
 
 argumentList
     : expression ( ',' expression )*
     ;
 
-vehicleTypeExp
-    : STRING;
+arrayExp
+    : '[' argumentList? ']';
 
 // to specify a (2D) position
 // e.g., "TrafficLane.239" at 3.5 expresses the position on lane 239, 3.5m from the starting point of the lane.
 positionExp
     : lanePositionExp;
 lanePositionExp
-    : laneExp
-    | laneExp 'at' offsetExp;
-laneExp
-    : STRING;
-offsetExp
-    : NUMBER;
+    : STRING ('at' NUMBER)?;
 
-// routes
-routesExp
-    : '[' routeExp (',' routeExp)* ']'
-    | '[' ']';
 routeExp
-    : laneExp ('with-speed-limit' speedExp)?;
-speedExp
-    : NUMBER;
+    : STRING ('with-speed-limit' NUMBER)?;
 
 // variable name, e.g., npc1
 variableExp: ID;
@@ -68,5 +53,5 @@ ID  : [a-zA-Z_] [a-zA-Z0-9_]*;
 // ignore space(s)
 WS  : (' '|'\t'|'\r'|'\n')+ -> skip;
 
-
-// TODO: Add comments
+LINE_COMMENT
+    : '//' ~[\r\n]* -> skip;
