@@ -8,7 +8,7 @@ namespace AWSIM_Script.Object
 		{
         }
 		// list of NPCs
-        private List<NPCScriptObject> npcs;
+        public List<NPCScriptObject> NPCs { get; set; }
 
 		// some more config might be added later
     }

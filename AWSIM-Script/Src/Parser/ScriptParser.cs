@@ -20,6 +20,11 @@ namespace AWSIM_Script.Parser
             return new Scenario();
         }
 
+        public Scenario ParseScript(string input)
+        {
+            return new Scenario();
+        }
+
         public static void Main()
         {
             // This is an example showing how we can use Anltr to obtain the parsed Tree

@@ -36,7 +36,7 @@ npc1 = NPC(vehicleType, spawnPosition, goal, routes);
 // spawn NPC, delay its movement until the Ego engaged
 npc3 = NPC("van", "TrafficLane.239", goal, routes, delay-until-ego-engaged(0));
 
-// npc2 = NPC("hatchback", "TrafficLane.240", "TrafficLane.241");
+npc2 = NPC("hatchback", "TrafficLane.240", "TrafficLane.241");
 
 // scenario. We may add some more parameters later
 run([npc1, npc2, npc3]);

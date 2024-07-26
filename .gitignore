@@ -1,7 +1,9 @@
 .vs/
-bin/
-obj/
 .history/
-.DS_Store
-.antlr
+**/.DS_Store
+**/.antlr
 .vscode
+
+**/build/
+**/obj/
+**/bin/

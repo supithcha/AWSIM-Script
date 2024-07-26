@@ -6,8 +6,11 @@ namespace AWSIM_Script.Object
 		public NPCConfig()
 		{
 		}
+
+		// routes and (optional) desired speed limit
 		// a map from lane name to the desired speed limit
-		private Dictionary<string, float> desiredSpeeds;
+		// if the speed limit is not set by the user, it is 0
+		public Dictionary<string, float> RouteSpeeds { get; set; }
 
         // in future, may consider adding acceleration and deacceleration rates
     }
