@@ -35,7 +35,7 @@ public class UnitTest1
         Assert.AreEqual(speed, 7);
 
         NPCScriptObject npc2 = scenario.NPCs[1];
-        Assert.AreEqual(npc2.VehicleType, VehicleType.VAN);
+        Assert.AreEqual(npc2.VehicleType, VehicleType.HATCHBACK);
         AssertPositionEqual(npc2.InitialPosition, "TrafficLane.240", 0);
         AssertPositionEqual(npc2.Goal, "TrafficLane.241", 0);
 

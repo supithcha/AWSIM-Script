@@ -188,7 +188,7 @@ namespace AWSIM_Script.Parser
             npc.Goal = ParseLanePosition(args[2], variableMap);
 
             // Handle routes if present
-            if (args.Length > 3)
+            if (args.Length > 3) // still need to edit
             {
                 string routesText;
                 if (args[3].variableExp() != null)
