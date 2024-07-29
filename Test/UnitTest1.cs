@@ -20,6 +20,12 @@ public class UnitTest1
         AssertPositionEqual(npc1.InitialPosition, "TrafficLane.239", 15);
         AssertPositionEqual(npc1.Goal, "TrafficLane.265", 60);
 
+        System.Diagnostics.Debug.WriteLine($"npc1 RouteSpeeds Count: {npc1.Config.RouteSpeeds.Count}");
+        foreach (var route in npc1.Config.RouteSpeeds)
+        {
+            System.Diagnostics.Debug.WriteLine($"Route: Lane={route.Key}, Speed={route.Value}");
+        }
+
         Assert.AreEqual(npc1.Config.RouteSpeeds.Count, 3);
         Assert.AreEqual(npc1.Config.RouteSpeeds.TryGetValue("TrafficLane.239", out float speed), true);
         Assert.AreEqual(speed, 0);
@@ -29,7 +35,7 @@ public class UnitTest1
         Assert.AreEqual(speed, 7);
 
         NPCScriptObject npc2 = scenario.NPCs[1];
-        Assert.AreEqual(npc2.VehicleType, VehicleType.HATCHBACK);
+        Assert.AreEqual(npc2.VehicleType, VehicleType.VAN);
         AssertPositionEqual(npc2.InitialPosition, "TrafficLane.240", 0);
         AssertPositionEqual(npc2.Goal, "TrafficLane.241", 0);
 

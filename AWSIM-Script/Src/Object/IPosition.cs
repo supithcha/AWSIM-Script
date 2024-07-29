@@ -6,6 +6,8 @@ namespace AWSIM_Script.Object
 	// In future, we might add other method to specify it.
 	public interface IPosition
 	{
-	}
+        string LaneName { get; }
+        float Position { get; }
+    }
 }
 
